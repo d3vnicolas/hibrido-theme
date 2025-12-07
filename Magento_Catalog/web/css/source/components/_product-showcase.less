@@ -1,0 +1,200 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common =true) {
+    .block.widget.block-products-list {
+        margin: 32px auto;
+        max-width: @layout__max-width;
+        padding: 0 @layout-indent__width;
+
+        .block-title {
+
+            &,
+            strong {
+                font-size: 1.6rem;
+                font-weight: @font-weight__heavier;
+            }
+        }
+
+        .product-items {
+            display: flex;
+            gap: @layout-indent__width;
+            flex-wrap: wrap;
+
+            .slick-slide {
+                margin: 0 8px;
+            }
+
+            .slick-list {
+                margin: 0 -8px;
+            }
+
+            .slick-arrow {
+                background-color: transparent;
+
+                &::before {
+                    color: @color-black;
+                    font-family: 'fontello';
+                    font-size: 2.4rem;
+                }
+
+                &.slick-prev {
+                    &::before {
+                        content: '\E85A';
+                    }
+                }
+
+                &.slick-next {
+                    &::before {
+                        content: '\E85B';
+                    }
+                }
+            }
+
+            .product-item {
+                .product-item-photo {
+                    display: block;
+
+                    .product-image-container {
+                        width: 100%;
+                    }
+                }
+            }
+
+            .product-item-details {
+                display: flex;
+                flex-direction: column;
+                padding: 8px;
+
+                >.d-flex {
+                    order: 1;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    .actions-secondary {
+                        .action.tocompare {
+                            .lib-visually-hidden();
+                        }
+
+                        .action.towishlist {
+                            .lib-icon-font(@_icon-font: 'fontello',
+                                @_icon-font-content: '\E805',
+                                @_icon-font-size: 1.8rem,
+                                @_icon-font-line-height: 1,
+                                @_icon-font-color: @custom-price__color,
+                                @_icon-font-margin: 0,
+                                @_icon-font-text-hide: true,
+                                @_icon-font-position: before);
+
+                            &:hover::before {
+                                content: '\E804';
+                            }
+                        }
+                    }
+                }
+
+                .product-item-inner {
+                    order: 4;
+                }
+
+                .product-item-name {
+                    order: 2;
+
+                    .product-item-link {
+                        color: @color-gray-darken3;
+                        font-size: 1.5rem;
+                        font-weight: @font-weight__heavier;
+                        text-transform: uppercase;
+                        text-decoration: none;
+                    }
+                }
+
+                .product-reviews-summary {
+                    .lib-visually-hidden();
+                }
+
+                .price-box {
+                    order: 3;
+                }
+
+                .price-installment {
+                    color: @color-gray-darken3;
+                    font-size: 1.2rem;
+                    font-weight: @font-weight__heavier;
+                    text-transform: uppercase;
+                }
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum ='min') and (@break =@screen__m) {
+    .block.widget.block-products-list {
+        .slick-arrow {
+            &.slick-prev {
+                left: @layout-indent__width;
+            }
+
+            &.slick-next {
+                right: @layout-indent__width;
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum ='min') and (@break =@screen__xl) {
+    .block.widget.block-products-list {
+        .slick-arrow {
+            &.slick-prev {
+                left: calc(~'(@{layout-indent__width} * 2) * -1');
+            }
+
+            &.slick-next {
+                right: calc(~'(@{layout-indent__width} * 2) * -1');
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__m) {
+    .block.widget.block-products-list {
+        .slick-arrow {
+            &.slick-prev {
+                left: @layout-indent__width;
+            }
+
+            &.slick-next {
+                right: @layout-indent__width;
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__xs) {
+    .block.widget.block-products-list .product-items .slick-list {
+        margin: 0 -@layout-indent__width 0 -8px;
+        padding-right: 20%;
+    }
+}
